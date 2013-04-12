@@ -1,7 +1,7 @@
 import time
 import uinput
 
-events = (uinput.KEY_E, uinput.KEY_H, uinput.KEY_L, uinput.KEY_O)
+events = (uinput.KEY_Q, uinput.KEY_W, uinput.KEY_O, uinput.KEY_P)
 device = uinput.Device(events)
 
 def takeStep(leg, stepTime):
@@ -10,26 +10,26 @@ def takeStep(leg, stepTime):
         time: float, number of seconds to step
     '''
 
-    if (leg='left'):
-        device.emit(uinput.KEY_Q, 1)
+    if (leg=='left'):
         device.emit(uinput.KEY_W, 1)
-
-    if (leg='right'):
         device.emit(uinput.KEY_O, 1)
+
+    if (leg=='right'):
+        device.emit(uinput.KEY_Q, 1)
         device.emit(uinput.KEY_P, 1)
 
     time.sleep(stepTime)
 
-    device.emit(uinput.KEY_Q, 0)
     device.emit(uinput.KEY_W, 0)
     device.emit(uinput.KEY_O, 0)
+    device.emit(uinput.KEY_Q, 0)
     device.emit(uinput.KEY_P, 0)
 
 def winQWOP():
-    stepTime = 1.1
-    for i in range(100):
-        takeStep(left, stepTime)
-        takeStep(right, stepTime)
+    stepTime = 2
+    for i in range(5):
+        takeStep("left", stepTime)
+        takeStep("right", stepTime)
 
 print "Starting QWOP winner in 5 seconds..."
 time.sleep(5)
