@@ -1,4 +1,8 @@
 import time
+import uinput
+
+events = (uinput.KEY_E, uinput.KEY_H, uinput.KEY_L, uinput.KEY_O)
+device = uinput.Device(events)
 
 def takeStep(leg, stepTime):
     ''' Takes a step on the leg that was passed
@@ -7,12 +11,19 @@ def takeStep(leg, stepTime):
     '''
 
     if (leg='left'):
-        #TODO press left leg keys
+        device.emit(uinput.KEY_Q, 1)
+        device.emit(uinput.KEY_W, 1)
 
     if (leg='right'):
-        #TODO press right leg keys
+        device.emit(uinput.KEY_O, 1)
+        device.emit(uinput.KEY_P, 1)
 
     time.sleep(stepTime)
+
+    device.emit(uinput.KEY_Q, 0)
+    device.emit(uinput.KEY_W, 0)
+    device.emit(uinput.KEY_O, 0)
+    device.emit(uinput.KEY_P, 0)
 
 def winQWOP():
     stepTime = 1.1
