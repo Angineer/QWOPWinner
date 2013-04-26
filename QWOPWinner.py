@@ -18,15 +18,18 @@ def takeStep(leg, stepTime):
         device.emit(uinput.KEY_Q, 1)
         device.emit(uinput.KEY_P, 1)
 
-    time.sleep(stepTime)
+    time.sleep(stepTime/2)
 
     device.emit(uinput.KEY_W, 0)
     device.emit(uinput.KEY_O, 0)
     device.emit(uinput.KEY_Q, 0)
     device.emit(uinput.KEY_P, 0)
 
+    time.sleep(stepTime/2)
+
 def winQWOP():
-    stepTime = 2
+    takeStep("left", 0.8)
+    stepTime = 2.0
     for i in range(5):
         takeStep("left", stepTime)
         takeStep("right", stepTime)
