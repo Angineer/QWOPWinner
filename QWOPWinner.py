@@ -28,8 +28,16 @@ def takeStep(leg, stepTime):
     time.sleep(stepTime/2)
 
 def winQWOP():
-    takeStep("left", 0.8)
-    stepTime = 2.0
+    # First step is special
+    device.emit(uinput.KEY_O, 1)
+    time.sleep(0.2)
+    device.emit(uinput.KEY_W, 1)
+    time.sleep(0.5)
+    device.emit(uinput.KEY_O, 0)
+    device.emit(uinput.KEY_W, 0)
+
+    # Then just walk it out
+    stepTime = 3.0
     for i in range(5):
         takeStep("left", stepTime)
         takeStep("right", stepTime)
